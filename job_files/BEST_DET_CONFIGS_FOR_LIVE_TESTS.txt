@@ -1,0 +1,106 @@
+------------------------
+BEST NEW CONFIGURATIONS USED FOR DETERMINISTIC MODELS. USED TO INITIALIZE PSVI
+3535469_Fusion_DET_20_0.0064659501030560436_16_0.0_1_exprt_390_seed_0_in-hospital-mortality_medfuse_test_20/checkpoint_20
+7869692_Fusion_DET_20_0.0064659501030560436_16_0.0_1_exprt_391_seed_1_in-hospital-mortality_medfuse_test_20/checkpoint_20
+7729893_Fusion_DET_20_0.0064659501030560436_16_0.0_1_exprt_392_seed_2_in-hospital-mortality_medfuse_test_20/checkpoint_20
+6379693_Fusion_DET_20_0.0064659501030560436_16_0.0_1_exprt_393_seed_3_in-hospital-mortality_medfuse_test_20/checkpoint_20
+929203_Fusion_DET_20_0.0064659501030560436_16_0.0_1_exprt_394_seed_4_in-hospital-mortality_medfuse_test_20/checkpoint_20
+
+7340086_Fusion_DET_40_0.0002581070436732287_16_0.0_1_exprt_300_seed_0_phenotyping_medfuse_test_40/checkpoint_40
+4367437_Fusion_DET_40_0.0002581070436732287_16_0.0_1_exprt_301_seed_1_phenotyping_medfuse_test_40/checkpoint_40
+9968083_Fusion_DET_40_0.0002581070436732287_16_0.0_1_exprt_302_seed_2_phenotyping_medfuse_test_40/checkpoint_40
+5920095_Fusion_DET_40_0.0002581070436732287_16_0.0_1_exprt_303_seed_3_phenotyping_medfuse_test_40/checkpoint_40
+0132415_Fusion_DET_40_0.0002581070436732287_16_0.0_1_exprt_304_seed_4_phenotyping_medfuse_test_40/checkpoint_40
+------------------------
+
+------------------------
+BEST OLD 1 month ago CONFIGURATIONS USED FOR DETERMINISTIC MODELS. USED TO INITIALIZE PSVI
+926862_Fusion_DET_30_0.00018233_16_0.0_1_exprt_0_seed_0_phenotyping_original_True/AUROC_checkpoint_best_0
+3957696_Fusion_DET_30_0.00018233_16_0.0_1_exprt_1_seed_1_phenotyping_original_True/AUROC_checkpoint_best_0	
+3815126_Fusion_DET_30_0.00018233_16_0.0_1_exprt_2_seed_2_phenotyping_original_True/AUROC_checkpoint_best_0	
+5157943_Fusion_DET_30_0.00018233_16_0.0_1_exprt_3_seed_3_phenotyping_original_True/AUROC_checkpoint_best_0	
+8372169_Fusion_DET_30_0.00018233_16_0.0_1_exprt_4_seed_4_phenotyping_original_True/AUROC_checkpoint_best_0	
+
+3313243_Fusion_DET_10_0.001_16_0.0_1_exprt_0_seed_0_in-hospital-mortality_original_True/AUROC_checkpoint_best_0	
+5809479_Fusion_DET_10_0.001_16_0.0_1_exprt_1_seed_1_in-hospital-mortality_original_True/AUROC_checkpoint_best_0	
+4804587_Fusion_DET_10_0.001_16_0.0_1_exprt_2_seed_2_in-hospital-mortality_original_True/AUROC_checkpoint_best_0	
+1762085_Fusion_DET_10_0.001_16_0.0_1_exprt_3_seed_3_in-hospital-mortality_original_True/AUROC_checkpoint_best_0	
+9006479_Fusion_DET_10_0.001_16_0.0_1_exprt_4_seed_4_in-hospital-mortality_original_True/AUROC_checkpoint_best_0	
+------------------------
+
+BEST OLD 2 months ago CONFIGURATIONS USED FOR DETERMINISTIC MODELS. USED TO INITIALIZE PSVI
+
+4283462_Fusion_DET_100_7.9439e-05_16_0.6571_exprt_124_seed_4_in-hospital-mortality_original
+5048835_Fusion_DET_100_7.9439e-05_16_0.6571_exprt_123_seed_3_in-hospital-mortality_original
+4718168_Fusion_DET_100_7.9439e-05_16_0.6571_exprt_122_seed_2_in-hospital-mortality_original
+3002307_Fusion_DET_100_7.9439e-05_16_0.6571_exprt_121_seed_1_in-hospital-mortality_original
+0831747_Fusion_DET_100_7.9439e-05_16_0.6571_exprt_120_seed_0_in-hospital-mortality_original
+
+3919346_Fusion_DET_100_0.00018233_16_0.6343_exprt_279_seed_4_phenotyping_original
+5311136_Fusion_DET_100_0.00018233_16_0.6343_exprt_278_seed_3_phenotyping_original
+3232028_Fusion_DET_100_0.00018233_16_0.6343_exprt_277_seed_2_phenotyping_original
+2595308_Fusion_DET_100_0.00018233_16_0.6343_exprt_276_seed_1_phenotyping_original
+9047527_Fusion_DET_100_0.00018233_16_0.6343_exprt_275_seed_0_phenotyping_original
+------------------------
+
+
+
+------------------------
+PSVI WITH misclassified
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 0 --wandb_project uq-fusion-tuning-mortality --model_for_final_eval LAST --num_epochs 100 --learning_rate 7.9439e-5 --alpha 0.6571 --mimic_task in-hospital-mortality --full_training --seed 0 --context_points misclassified
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-psvi.json --jobid 5 --pretrained_prior --model_for_final_eval LAST --learning_rate 1e-05 --batch_size 16 --num_epochs 4 --alpha 0.6571 --context_batch_size 16 --context_points train --prior_var 10 --prior_likelihood_scale 0.1 --prior_likelihood_f_scale 10 --prior_likelihood_cov_scale 0.001 --prior_likelihood_cov_diag 1 --mimic_task in-hospital-mortality --wandb_project uq-fusion-psvi-mortality --pretrained_prior_path checkpoints_best_models/0831747_Fusion_DET_100_7.9439e-05_16_0.6571_exprt_120_seed_0_in-hospital-mortality_original_100/checkpoint_100 --seed 0
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-psvi.json --jobid 5 --pretrained_prior --model_for_final_eval LAST --learning_rate 1e-05 --batch_size 16 --num_epochs 4 --alpha 0.6571 --context_batch_size 16 --context_points misclassified --prior_var 10 --prior_likelihood_scale 0.1 --prior_likelihood_f_scale 10 --prior_likelihood_cov_scale 0.001 --prior_likelihood_cov_diag 1 --mimic_task phenotyping --wandb_project uq-fusion-psvi-phenotyping --pretrained_prior_path checkpoints_best_models/9047527_Fusion_DET_100_0.00018233_16_0.6343_exprt_275_seed_0_phenotyping_original_100/checkpoint_100 --seed 0
+------------------------
+
+EXTRACT CONTEXT POINTS
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 0 --mimic_task in-hospital-mortality --build_context_set --model_for_final_eval checkpoints_best_models/3313243_Fusion_DET_10_0.001_16_0.0_1_exprt_0_seed_0_in-hospital-mortality_original_True/AUROC_checkpoint_best_0/AUROC_checkpoint_best_0
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 0 --mimic_task phenotyping --build_context_set --model_for_final_eval checkpoints_best_models/926862_Fusion_DET_30_0.00018233_16_0.0_1_exprt_0_seed_0_phenotyping_original_True/AUROC_checkpoint_best_0/AUROC_checkpoint_best_0
+------------------------
+
+
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-psvi.json --jobid 0 --pretrained_prior --model_for_final_eval LAST --learning_rate 0.0001 --batch_size 16 --num_epochs 15 --alpha 0.6343 --context_batch_size 16 --context_points latent --prior_var 0.1 --prior_likelihood_scale 10 --prior_likelihood_f_scale 1 --prior_likelihood_cov_scale 0.1 --prior_likelihood_cov_diag 1 --mimic_task phenotyping --wandb_project uq-fusion-psvi-3_1-phenotyping-new --pretrained_prior_path checkpoints_best_models/926862_Fusion_DET_30_0.00018233_16_0.0_1_exprt_0_seed_0_phenotyping_original_True/AUROC_checkpoint_best_0 --seed 0 --corrupted --context_points_data_file context_set_3_cos_sim_type1_phenotyping_1_std.npz
+
+
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 0 --build_context_set --label_file_splits medfuse_test --model_for_final_eval checkpoints_best_models/3535469_Fusion_DET_20_0.0064659501030560436_16_0.0_1_exprt_390_seed_0_in-hospital-mortality_medfuse_test_20/checkpoint_20 --batch_size 16 --num_epochs 20 --mimic_task in-hospital-mortality --seed 0
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 1 --build_context_set --label_file_splits medfuse_test --model_for_final_eval checkpoints_best_models/7869692_Fusion_DET_20_0.0064659501030560436_16_0.0_1_exprt_391_seed_1_in-hospital-mortality_medfuse_test_20/checkpoint_20 --batch_size 16 --num_epochs 20 --mimic_task in-hospital-mortality --seed 1
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 2 --build_context_set --label_file_splits medfuse_test --model_for_final_eval checkpoints_best_models/7729893_Fusion_DET_20_0.0064659501030560436_16_0.0_1_exprt_392_seed_2_in-hospital-mortality_medfuse_test_20/checkpoint_20 --batch_size 16 --num_epochs 20 --mimic_task in-hospital-mortality --seed 2
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 3 --build_context_set --label_file_splits medfuse_test --model_for_final_eval checkpoints_best_models/6379693_Fusion_DET_20_0.0064659501030560436_16_0.0_1_exprt_393_seed_3_in-hospital-mortality_medfuse_test_20/checkpoint_20 --batch_size 16 --num_epochs 20 --mimic_task in-hospital-mortality --seed 3
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 4 --build_context_set --label_file_splits medfuse_test --model_for_final_eval checkpoints_best_models/929203_Fusion_DET_20_0.0064659501030560436_16_0.0_1_exprt_394_seed_4_in-hospital-mortality_medfuse_test_20/checkpoint_20 --batch_size 16 --num_epochs 20 --mimic_task in-hospital-mortality --seed 4
+
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 0 --build_context_set --label_file_splits medfuse_test --model_for_final_eval checkpoints_best_models/7340086_Fusion_DET_40_0.0002581070436732287_16_0.0_1_exprt_300_seed_0_phenotyping_medfuse_test_40/checkpoint_40 --batch_size 16 --num_epochs 20 --mimic_task phenotyping --seed 0
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 1 --build_context_set --label_file_splits medfuse_test --model_for_final_eval checkpoints_best_models/4367437_Fusion_DET_40_0.0002581070436732287_16_0.0_1_exprt_301_seed_1_phenotyping_medfuse_test_40/checkpoint_40 --batch_size 16 --num_epochs 20 --mimic_task phenotyping --seed 1
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 2 --build_context_set --label_file_splits medfuse_test --model_for_final_eval checkpoints_best_models/9968083_Fusion_DET_40_0.0002581070436732287_16_0.0_1_exprt_302_seed_2_phenotyping_medfuse_test_40/checkpoint_40 --batch_size 16 --num_epochs 20 --mimic_task phenotyping --seed 2
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 3 --build_context_set --label_file_splits medfuse_test --model_for_final_eval checkpoints_best_models/5920095_Fusion_DET_40_0.0002581070436732287_16_0.0_1_exprt_303_seed_3_phenotyping_medfuse_test_40/checkpoint_40 --batch_size 16 --num_epochs 20 --mimic_task phenotyping --seed 3
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 4 --build_context_set --label_file_splits medfuse_test --model_for_final_eval checkpoints_best_models/0132415_Fusion_DET_40_0.0002581070436732287_16_0.0_1_exprt_304_seed_4_phenotyping_medfuse_test_40/checkpoint_40 --batch_size 16 --num_epochs 20 --mimic_task phenotyping --seed 4
+
+
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-psvi.json --jobid 001 --pretrained_prior --full_training --model_for_final_eval LAST --label_file_splits medfuse_test --learning_rate 0.0006465 --batch_size 16 --num_epochs 5 --alpha 0 --context_batch_size 32 --context_points train --prior_var 1000 --prior_likelihood_scale 0.1 --prior_likelihood_f_scale 1 --prior_likelihood_cov_scale 0.1 --prior_likelihood_cov_diag 5 --mimic_task in-hospital-mortality --wandb_project uq-fusion-psvi-1-mortality --pretrained_prior --pretrained_prior_path checkpoints_best_models/3535469_Fusion_DET_20_0.0064659501030560436_16_0.0_1_exprt_390_seed_0_in-hospital-mortality_medfuse_test_20/checkpoint_20 --seed 0
+
+
+LIVE TEST 18 JULY 2024
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-psvi.json --jobid 460 --pretrained_prior --full_training --model_for_final_eval LAST --label_file_splits medfuse_test --learning_rate 0.006465 --batch_size 16 --num_epochs 10 --alpha 0 --context_batch_size 16 --context_points merged --prior_var 1 --prior_likelihood_scale 10 --prior_likelihood_f_scale 0 --prior_likelihood_cov_scale 0.01 --prior_likelihood_cov_diag 5 --mimic_task in-hospital-mortality --wandb_project uq-fusion-psvi-3_2-merged-psvi1-mortality --pretrained_prior --pretrained_prior_path checkpoints_best_models/3535469_Fusion_DET_20_0.0064659501030560436_16_0.0_1_exprt_390_seed_0_in-hospital-mortality_medfuse_test_20/checkpoint_20 --context_points_data_file Context-III/in-hospital-mortality/context_set_3_cos_sim_type2_in-hospital-mortality_1_std.npz --seed 0
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-psvi.json --jobid 461 --pretrained_prior --full_training --model_for_final_eval LAST --label_file_splits medfuse_test --learning_rate 0.006465 --batch_size 16 --num_epochs 10 --alpha 0 --context_batch_size 16 --context_points merged --prior_var 1 --prior_likelihood_scale 10 --prior_likelihood_f_scale 0 --prior_likelihood_cov_scale 0.01 --prior_likelihood_cov_diag 5 --mimic_task in-hospital-mortality --wandb_project uq-fusion-psvi-3_2-merged-psvi1-mortality --pretrained_prior --pretrained_prior_path checkpoints_best_models/7869692_Fusion_DET_20_0.0064659501030560436_16_0.0_1_exprt_391_seed_1_in-hospital-mortality_medfuse_test_20/checkpoint_20 --context_points_data_file Context-III/in-hospital-mortality/context_set_3_cos_sim_type2_in-hospital-mortality_1_std.npz --seed 1
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-psvi.json --jobid 462 --pretrained_prior --full_training --model_for_final_eval LAST --label_file_splits medfuse_test --learning_rate 0.006465 --batch_size 16 --num_epochs 10 --alpha 0 --context_batch_size 16 --context_points merged --prior_var 1 --prior_likelihood_scale 10 --prior_likelihood_f_scale 0 --prior_likelihood_cov_scale 0.01 --prior_likelihood_cov_diag 5 --mimic_task in-hospital-mortality --wandb_project uq-fusion-psvi-3_2-merged-psvi1-mortality --pretrained_prior --pretrained_prior_path checkpoints_best_models/7729893_Fusion_DET_20_0.0064659501030560436_16_0.0_1_exprt_392_seed_2_in-hospital-mortality_medfuse_test_20/checkpoint_20 --context_points_data_file Context-III/in-hospital-mortality/context_set_3_cos_sim_type2_in-hospital-mortality_1_std.npz --seed 2
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-psvi.json --jobid 463 --pretrained_prior --full_training --model_for_final_eval LAST --label_file_splits medfuse_test --learning_rate 0.006465 --batch_size 16 --num_epochs 10 --alpha 0 --context_batch_size 16 --context_points merged --prior_var 1 --prior_likelihood_scale 10 --prior_likelihood_f_scale 0 --prior_likelihood_cov_scale 0.01 --prior_likelihood_cov_diag 5 --mimic_task in-hospital-mortality --wandb_project uq-fusion-psvi-3_2-merged-psvi1-mortality --pretrained_prior --pretrained_prior_path checkpoints_best_models/6379693_Fusion_DET_20_0.0064659501030560436_16_0.0_1_exprt_393_seed_3_in-hospital-mortality_medfuse_test_20/checkpoint_20 --context_points_data_file Context-III/in-hospital-mortality/context_set_3_cos_sim_type2_in-hospital-mortality_1_std.npz --seed 3
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-psvi.json --jobid 464 --pretrained_prior --full_training --model_for_final_eval LAST --label_file_splits medfuse_test --learning_rate 0.006465 --batch_size 16 --num_epochs 10 --alpha 0 --context_batch_size 16 --context_points merged --prior_var 1 --prior_likelihood_scale 10 --prior_likelihood_f_scale 0 --prior_likelihood_cov_scale 0.01 --prior_likelihood_cov_diag 5 --mimic_task in-hospital-mortality --wandb_project uq-fusion-psvi-3_2-merged-psvi1-mortality --pretrained_prior --pretrained_prior_path checkpoints_best_models/929203_Fusion_DET_20_0.0064659501030560436_16_0.0_1_exprt_394_seed_4_in-hospital-mortality_medfuse_test_20/checkpoint_20 --context_points_data_file Context-III/in-hospital-mortality/context_set_3_cos_sim_type2_in-hospital-mortality_1_std.npz --seed 4
+
+
+LIVE TEST DET FINE TUNING 22th JULY
+MORTALITY.
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 390 --label_file_splits medfuse_test --model_for_final_eval LAST --batch_size 16 --num_epochs 10 --learning_rate 0.0064659501030560436 --alpha 0 --reg_scale 10 --mimic_task in-hospital-mortality --wandb_project uq-fusion-det-mortality-DEBUG --seed 0
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 390 --label_file_splits medfuse_test --pretrained_prior --pretrained_prior_path checkpoints_to_select_best_07_24/7299616_Fusion_DET_20_0.0064659501030560436_16_0.0_1_exprt_390_seed_0_in-hospital-mortality_medfuse_test_full_training_20/checkpoint_20 --model_for_final_eval LAST --batch_size 16 --num_epochs 10 --learning_rate 0.0064659501030560436 --alpha 0 --reg_scale 10 --mimic_task in-hospital-mortality --seed 0
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 390 --label_file_splits medfuse_test --det_model_fine_tuning --pretrained_prior --pretrained_prior_path checkpoints_to_select_best_07_24/7299616_Fusion_DET_20_0.0064659501030560436_16_0.0_1_exprt_390_seed_0_in-hospital-mortality_medfuse_test_full_training_20/checkpoint_20 --model_for_final_eval LAST --batch_size 16 --num_epochs 10 --learning_rate 0.0064659501030560436 --alpha 0 --reg_scale 10 --mimic_task in-hospital-mortality --seed 0
+
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 391 --label_file_splits medfuse_test --det_model_fine_tuning --pretrained_prior --pretrained_prior_path checkpoints_to_select_best_07_24/3098516_Fusion_DET_20_0.0064659501030560436_16_0.0_1_exprt_391_seed_1_in-hospital-mortality_medfuse_test_full_training_20/checkpoint_20 --model_for_final_eval LAST --batch_size 16 --num_epochs 10 --learning_rate 0.0064659501030560436 --alpha 0 --reg_scale 10 --mimic_task in-hospital-mortality --seed 1
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 391 --label_file_splits medfuse_test --model_for_final_eval LAST --batch_size 16 --num_epochs 10 --learning_rate 0.0064659501030560436 --alpha 0 --reg_scale 10 --mimic_task in-hospital-mortality --seed 1
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 391 --label_file_splits medfuse_test --pretrained_prior --pretrained_prior_path checkpoints_to_select_best_07_24/3098516_Fusion_DET_20_0.0064659501030560436_16_0.0_1_exprt_391_seed_1_in-hospital-mortality_medfuse_test_full_training_20/checkpoint_20 --model_for_final_eval LAST --batch_size 16 --num_epochs 10 --learning_rate 0.0064659501030560436 --alpha 0 --reg_scale 10 --mimic_task in-hospital-mortality --seed 1
+
+CLINICAL CONDITION.
+
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 300 --label_file_splits medfuse_test --det_model_fine_tuning --pretrained_prior --pretrained_prior_path checkpoints_to_select_best_07_24/368213_Fusion_DET_40_0.0002581070436732287_16_0.0_1_exprt_300_seed_0_phenotyping_medfuse_test_full_training_40/checkpoint_40 --model_for_final_eval LAST --batch_size 16 --num_epochs 10 --learning_rate 0.0002581070436732287 --alpha 0 --reg_scale 1 --mimic_task phenotyping --seed 0
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 300 --label_file_splits medfuse_test --model_for_final_eval LAST --batch_size 16 --num_epochs 10 --learning_rate 0.0002581070436732287 --alpha 0 --reg_scale 1 --mimic_task phenotyping --seed 0
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 300 --label_file_splits medfuse_test --pretrained_prior --pretrained_prior_path checkpoints_to_select_best_07_24/368213_Fusion_DET_40_0.0002581070436732287_16_0.0_1_exprt_300_seed_0_phenotyping_medfuse_test_full_training_40/checkpoint_40 --model_for_final_eval LAST --batch_size 16 --num_epochs 10 --learning_rate 0.0002581070436732287 --alpha 0 --reg_scale 1 --mimic_task phenotyping --seed 0
+
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 301 --label_file_splits medfuse_test --det_model_fine_tuning --pretrained_prior --pretrained_prior_path checkpoints_to_select_best_07_24/6638105_Fusion_DET_40_0.0002581070436732287_16_0.0_1_exprt_301_seed_1_phenotyping_medfuse_test_full_training_40/checkpoint_40 --model_for_final_eval LAST --batch_size 16 --num_epochs 10 --learning_rate 0.0002581070436732287 --alpha 0 --reg_scale 1 --mimic_task phenotyping --seed 1
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 301 --label_file_splits medfuse_test --model_for_final_eval LAST --batch_size 16 --num_epochs 10 --learning_rate 0.0002581070436732287 --alpha 0 --reg_scale 1 --mimic_task phenotyping --seed 1
+python trainer.py --config configs/nn-tdvi-pt-fusion-mimic-det.json --jobid 301 --label_file_splits medfuse_test --pretrained_prior --pretrained_prior_path checkpoints_to_select_best_07_24/6638105_Fusion_DET_40_0.0002581070436732287_16_0.0_1_exprt_301_seed_1_phenotyping_medfuse_test_full_training_40/checkpoint_40 --model_for_final_eval LAST --batch_size 16 --num_epochs 10 --learning_rate 0.0002581070436732287 --alpha 0 --reg_scale 1 --mimic_task phenotyping --seed 1
