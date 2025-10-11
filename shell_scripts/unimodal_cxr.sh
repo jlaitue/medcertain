@@ -16,7 +16,7 @@ eval "$(conda shell.bash hook)"
 conda activate uq-wq
 
 export XLA_PYTHON_CLIENT_MEM_FRACTION=".80"; \
-export WANDB_API_KEY=9b5357df452ab07579f57dc9db74d1382a58a001; \
+export WANDB_API_KEY=; \
 python trainer.py --config configs/nn-tdvi-pt-cxr-mimic.json \
 --save_to_wandb --jobid 001 --label_file_splits medfuse_test \
 --model_for_final_eval LAST --batch_size 16 --num_epochs 50 \
