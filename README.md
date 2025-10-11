@@ -1,8 +1,5 @@
-# 🩻 MedCertAIn: Uncertainty Quantification Framework with Informative Multimodal Priors Enhances Reliability of AI-based In-Hospital Mortality Prediction
+# 🩻 Class-Dependent Miscalibration Severely Degrades Selective Prediction in Multimodal Clinical Prediction Models
 
-### Release
-
-- [10/2024] **MedCertAIn** (Initial) base code is released for submission to peer-reviewed journal.
 
 Table of contents
 =================
@@ -15,7 +12,12 @@ Table of contents
 
 Background
 ============
-Integrating AI in clinical decision support systems aims to enhance patient care. However, a major challenge is the lack of principled uncertainty quantification in machine learning models, especially in multimodal learning, which limits real-world deployment. We introduce MedCertAIn, a framework using tailored data-driven prior distributions over neural network parameters to improve uncertainty quantification. Implemented using JAX, MedCertAIn leverages the MIMIC-IV and MIMIC-CXR datasets to predict patient mortality in the ICU. Our results show that MedCertAIn significantly improves predictive performance and uncertainty metrics, outperforming current methods and demonstrating its potential for more reliable AI-driven healthcare applications.
+As artificial intelligence systems transition from research to clinical deployment, ensuring their reliability becomes critical for clinical decision-making tasks, as incorrect predictions can have serious consequences. 
+Deploying AI in healthcare therefore requires prediction systems with robust safeguards against error, such as selective prediction, where uncertain predictions are deferred to human experts for review. 
+In this study, we carefully evaluate the reliability of uncertainty-based selective prediction for multilabel clinical condition classification using multimodal data. 
+Our findings show that models often exhibit severe class-dependent miscalibration causing predictive performance to degrade under uncertainty-guided selective prediction---attributing high uncertainty to correct predictions and low uncertainty to incorrect predictions. 
+Our evaluation highlights fundamental shortcomings of commonly used evaluation metrics for clinical AI. 
+To address these shortcomings, we propose practical recommendations for calibration-aware model assessment and selective prediction design, offering a pathway to safer, more reliable AI systems that clinicians and patients can trust.
 
 Directory overview
 ====================================
@@ -24,7 +26,7 @@ Directory overview
 - Contains the main MedFuse model architectures.
 
 ### configs/
-- Configuration files for different training methods, unimodal and multimodal as well as hyperparameters for the uncertainty quantification framework.
+- Configuration files for different training methods, unimodal and multimodal as well as hyperparameters for the group aware priors framework.
 
 ### processing_scripts/
 - Scripts for processing images, datasets, and evaluation metrics.
@@ -42,7 +44,7 @@ Directory overview
 - Contains various utility functions used throughout the code for calculating performance metrics and custom loss functions used in model training.
 
 ### trainer.py
-- Main script of the MedCertAIn framework.
+- Main script.
 - **Functionality**:
   - **Data Loading**: Prepares data for training and evaluation.
   - **Model Initialization**: Sets up the LSTM and ResNet models.
@@ -54,7 +56,7 @@ Directory overview
 Getting started
 ====================================
 
-To get started with the MedCertAIn framework, follow the instructions below.
+To get started, follow the instructions below.
 
 ### Prerequisites
 
@@ -65,17 +67,14 @@ To get started with the MedCertAIn framework, follow the instructions below.
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/MedCertAIn.git
-   cd MedCertAIn
+   git clone https://anonymous.4open.science/r/medcalibration-B187/README.md
 
 2. Clone the repository:
 
     ```conda env create -f environment.yml
-    conda activate MedCertAIn
+    conda activate uq-wq
 
 3. Refer to **shell_scripts/** and **job_files/** folders for specific cases of model training
-
-*Note: we are currently in the process of preparing model weights for all trained models (i.e. unimodal and multimodal) adjusting the shell scripts for easier implementation.*
 
 
 License
