@@ -18,4 +18,4 @@ conda activate uq-wq
 
 export XLA_PYTHON_CLIENT_MEM_FRACTION=".80"; \
 export WANDB_API_KEY=9b5357df452ab07579f57dc9db74d1382a58a001; \
-srun $(head -n $SLURM_ARRAY_TASK_ID job_files/miscalibration_analysis/det_jobs.txt | tail -n 1)
+srun $(head -n $SLURM_ARRAY_TASK_ID job_files/gap/det.txt | tail -n 1)
