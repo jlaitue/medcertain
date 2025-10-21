@@ -69,9 +69,9 @@ To get started, follow the instructions below.
    ```sh
    git clone https://anonymous.4open.science/r/medcalibration-B187/README.md
 
-2. Clone the repository:
+2. Create conda environment:
 
-    ```conda env create -f environment.yml
+    conda env create -f environment.yml
     conda activate uq-wq
 
 3. Refer to **shell_scripts/** and **job_files/** folders for specific cases of model training
